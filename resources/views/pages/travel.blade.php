@@ -1,5 +1,14 @@
 @extends('app')
 @section('content')
+    @php
+
+        $asalSlug = Str::slug($travel[0]['name']);
+        $asalId = $travel[0]['code'];
+        $tujuanSlug = Str::slug($travel[1]['name']);
+        $tujuanId = $travel[1]['code'];
+
+    @endphp
+
     <x-default-baner :title="$page . ' PP Murah ' . date('Y')" :desc="$desc . '.'" />
     <x-layouts.article-section>
         {{-- left --}}
@@ -29,7 +38,10 @@
             <p>
                 Biaya perjalanan dari {{ Str::title($travel[0]->name) }} ke {{ Str::title($travel[1]->name) }} bersifat
                 dinamis dan dapat berubah sesuai kondisi. Untuk mendapatkan tarif terbaik, sebaiknya pesan tiket travel
-                melalui <strong>{{ $page }}</strong> paling lambat 1 hari sebelum keberangkatan. Jika memesan
+                melalui <a target="_blank" title="{{ $page }}"
+                    href="https://jasatravel.web.id/rute-travel/dari-{{ $asalSlug }}/ke-{{ $tujuanSlug }}/{{ $asalId }}/{{ $tujuanId }}">
+                    <strong>{{ $page }}</strong>
+                </a> paling lambat 1 hari sebelum keberangkatan. Jika memesan
                 terlalu dekat dengan jadwal keberangkatan, harga tiket cenderung meningkat, terutama saat momen hari raya
                 atau libur panjang.
             </p>
@@ -85,7 +97,10 @@
                 </div>
             </div>
             <p>
-                Jadwal keberangkatan dapat berubah sewaktu-waktu. Jika Anda ingin berangkat pada waktu yang tidak tercantum
+                Jadwal keberangkatan <a target="_blank" title="Travel {{ $travel[1]['name'] }} {{ $travel[0]['name'] }}"
+                    href="https://jasatravel.web.id/rute-travel/dari-{{ $tujuanSlug }}/ke-{{ $asalSlug }}/{{ $tujuanId }}/{{ $asalId }}">
+                    <strong>Travel {{ $travel[1]['name'] }} {{ $travel[0]['name'] }}</strong>
+                </a> dapat berubah sewaktu-waktu. Jika Anda ingin berangkat pada waktu yang tidak tercantum
                 dalam tabel, silahkan lakukan pemesanan carter langsung dengan admin. Waktu dan hari keberangkatan bisa
                 disesuaikan sesuai kebutuhan Anda.
 
